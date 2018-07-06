@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import MenuItem from './MenuItem';
 import Icon from './Icon';
 
-export class CustomToggleMenu extends Component {
+export class ToggleMenu extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -32,8 +32,8 @@ export class CustomToggleMenu extends Component {
     }
 }
 
-CustomToggleMenu.propTypes = {
+ToggleMenu.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-export default CustomToggleMenu;
+export default ToggleMenu;
