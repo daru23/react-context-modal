@@ -8,15 +8,12 @@ export class Mouse extends Component {
             y: 0,
         };
     }
-    handleMouseMove = (event, offsetX, offsetY) => {
-        this.setState({
-            x: offsetX,
-            y: offsetY,
-        });
+    handleMouseMove = (e) => {
+        this.setState({x: e.nativeEvent.layerX, y: e.nativeEvent.layerY});
     };
     render () {
         return (
-            <div onMouseMove={(e) => this.handleMouseMove(e, e.nativeEvent.offsetX, e.nativeEvent.offsetY)} style={{height: '200px'}}>
+            <div ref="elem" onMouseMove={this.handleMouseMove} style={{height: '200px'}}>
                 {this.props.render(this.state)}
             </div>
         )
