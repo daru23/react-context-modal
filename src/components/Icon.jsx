@@ -5,5 +5,6 @@ export const Icon = () =>
         <circle cx="7" cy="16" r="2" />
         <circle cx="16" cy="16" r="2" />
         <circle cx="25" cy="16" r="2" />
-    </svg>
+    </svg>;
+
 export default Icon;
