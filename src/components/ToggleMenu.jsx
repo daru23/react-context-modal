@@ -50,7 +50,7 @@ export class ToggleMenu extends Component {
         let optionsList = this.handleChildren();
 
         return (<div ref={this.setWrapperRef}  className={`dropdown ${showMenu ? 'show' : ''}`}>
-                    <button className="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={this.toggleMenu}>
+                    <button className="btn btn-dark" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={this.toggleMenu}>
                        <Icon />
                     </button>
                     <div className={`dropdown-menu dropdown-menu-right ${showMenu ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
