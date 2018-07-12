@@ -11,17 +11,45 @@ export class ToggleMenu extends Component {
             showMenu: false,
         };
     }
-
+    componentDidUpdate() {
+        // Just add listener when the toggle menu is open and remove it when is close,
+        // This way do not interfere with other components
+        if (this.state.showMenu) {
+            document.addEventListener('mousedown', this.handleClickOutside);
+        } else {
+            document.removeEventListener('mousedown', this.handleClickOutside);
+        }
+    }
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside);
+    };
     toggleMenu = () => {
         this.setState({showMenu: !this.state.showMenu});
     };
-
+    setWrapperRef = (node) => {
+        this.wrapperRef = node;
+    };
+    handleClickOutside = (event) => {
+        event.preventDefault();
+        if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+            if (this.state.showMenu) {
+                this.setState({showMenu: false})
+            }
+        }
+    };
+    handleChildren = () => {
+        const {children} = this.props;
+        if (React.Children.count(children) > 1) {
+            return children.map((x, i) => <MenuItem key={`toggle-menu-item-${i}`} label={x} />)
+        } else {
+            return <MenuItem key={`toggle-menu-item-${0}`} label={children}/>;
+        }
+    };
     render() {
         const {showMenu} = this.state;
-        const {children} = this.props;
-        let optionsList = (React.Children.count(children) > 1) ? children.map((x, i) => <MenuItem key={`toggle-menu-item-${i}`} label={x} />):
-            <MenuItem key={`toggle-menu-item-${0}`} label={children}/>;
-        return (<div className={`dropdown ${showMenu ? 'show' : ''}`}>
+        let optionsList = this.handleChildren();
+
+        return (<div ref={this.setWrapperRef}  className={`dropdown ${showMenu ? 'show' : ''}`}>
                     <button className="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={this.toggleMenu}>
                        <Icon />
                     </button>
