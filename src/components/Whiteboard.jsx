@@ -1,9 +1,34 @@
-import React from 'react';
+import React, {Component} from 'react';
 // Components
+import ColorPicker from './ColorPicker';
+import DrawingCanvas from './DrawingCanvas';
+// CSS
+import './whiteboard.css';
 
-export const Whiteboard = () =>
-    <h1>
-        Whiteboard
-    </h1>;
+export class Whiteboard extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            color: 'black',
+        };
+    }
+
+    onChangeColor = (color) => {
+        console.log("chnging color");
+        this.setState({color: color});
+    };
+
+    render() {
+        return (
+            <div className="card whiteboard-container">
+                <ColorPicker onChangeColor={this.onChangeColor}/>
+                <div>
+                    <DrawingCanvas color={this.state.color}/>
+                </div>
+            </div>
+        );
+    }
+}
 
 export default Whiteboard;
