@@ -14,12 +14,23 @@ export class DrawingCanvas extends Component {
     }
     setWrapperRef = (node) => {
         this.wrapperRef = node;
+        this.position = this.wrapperRef.getBoundingClientRect();
+        console.log(this.position);
+    };
+    calculateX = (e) => {
+      return e.nativeEvent.offsetX
+    };
+    calculateY = (e) => {
+        return e.nativeEvent.offsetY
     };
     onMouseDown = (event) => {
+        // console.log(event.clientX, event.nativeEvent.offsetY, event.nativeEvent.screenY, this.position.y);
+        console.log(event.clientY, event.nativeEvent.offsetY, event.nativeEvent.screenY, this.position.y);
+        console.log( event.clientY - this.position.y);
         this.setState({
             drawing: true,
-            x: event.nativeEvent.pageX - event.nativeEvent.offsetX,
-            y: event.nativeEvent.pageY - event.nativeEvent.offsetY
+            x: this.calculateX(event),
+            y: this.calculateY(event)
         });
     };
     onMouseUp = (event) => {
@@ -31,7 +42,7 @@ export class DrawingCanvas extends Component {
         this.setState({
             drawing: false
         });
-        this.drawLine(x, y, event.nativeEvent.pageX - event.nativeEvent.offsetX, event.nativeEvent.pageY - event.nativeEvent.offsetY, color, true);
+        this.drawLine(x, y, this.calculateX(event), this.calculateY(event), color, true);
     };
     onMouseMove = (event) => {
         const {drawing, x, y} = this.state;
@@ -39,10 +50,10 @@ export class DrawingCanvas extends Component {
         if (!drawing) {
             return;
         }
-        this.drawLine(x, y, event.nativeEvent.pageX - event.nativeEvent.offsetX, event.nativeEvent.pageY - event.nativeEvent.offsetY, color, true);
+        this.drawLine(x, y, this.calculateX(event), this.calculateY(event), color, true);
         this.setState({
-            x: event.nativeEvent.pageX - event.nativeEvent.offsetX,
-            y: event.nativeEvent.pageY - event.nativeEvent.offsetY
+            x: this.calculateX(event),
+            y: this.calculateY(event)
         });
     };
     drawLine = (x0, y0, x1, y1, color, emit) => {
@@ -51,21 +62,18 @@ export class DrawingCanvas extends Component {
         let context = canvas.getContext('2d');
         let w = canvas.width;
         let h = canvas.height;
-
-        context.beginPath();
+        console.log(`x0: ${x0} x1: ${x1}`);
+        console.log(`y0: ${y0} y1: ${y1}`);
+        // context.beginPath();
         context.moveTo(x0, y0);
         context.lineTo(x1, y1);
         context.strokeStyle = color;
         context.lineWidth = 2;
         context.stroke();
-        context.closePath();
-
-        if (!emit) {
-            return;
-        }
-
-
-
+        // context.closePath();
+        // if (!emit) {
+        //     return;
+        // }
         // socket.emit('drawing', {
         //     x0: x0 / w,
         //     y0: y0 / h,
@@ -75,9 +83,8 @@ export class DrawingCanvas extends Component {
         // });
     };
     render() {
-        const {color} = this.props;
         return (
-            <div className="card" style={{width: "750px", height: "750px"}}>
+            <div>
                 <canvas className="whiteboard" ref={this.setWrapperRef} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp} onMouseDown={this.onMouseDown}> </canvas>
             </div>
         );

@@ -9,7 +9,8 @@ export class Mouse extends Component {
         };
     }
     handleMouseMove = (e) => {
-        this.setState({x: e.nativeEvent.clientX, y: e.nativeEvent.clientY});
+        e.stopPropagation();
+        this.setState({x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY});
     };
     render () {
         return (

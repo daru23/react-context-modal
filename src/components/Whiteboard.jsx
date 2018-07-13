@@ -15,13 +15,13 @@ export class Whiteboard extends Component {
     }
 
     onChangeColor = (color) => {
-        console.log("chnging color");
+        console.log("changing color");
         this.setState({color: color});
     };
 
     render() {
         return (
-            <div className="card whiteboard-container">
+            <div className="whiteboard-container">
                 <ColorPicker onChangeColor={this.onChangeColor}/>
                 <div>
                     <DrawingCanvas color={this.state.color}/>
