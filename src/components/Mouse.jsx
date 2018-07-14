@@ -8,15 +8,17 @@ export class Mouse extends Component {
             y: 0,
         };
     }
+    setWrapperRef = (node) => {
+        this.wrapperRef = node;
+        this.position = this.wrapperRef.getBoundingClientRect();
+    };
     handleMouseMove = (e) => {
         e.preventDefault();
-        e.stopPropagation();
-        console.log(e.clientX, e.pageX, e.screenX);
-        this.setState({x: e.clientX - 70, y: e.clientY - 320});
+        this.setState({x: e.clientX - this.position.left, y: e.clientY - this.position.top});
     };
     render () {
         return (
-            <div ref="elem" onMouseMove={this.handleMouseMove} style={{position: 'relative', height: '200px', border: 'solid 1px black'}}>
+            <div  ref={this.setWrapperRef}  onMouseMove={this.handleMouseMove} style={{position: 'relative', height: '200px', border: 'solid 1px black'}}>
                 {this.props.render(this.state)}
             </div>
         )

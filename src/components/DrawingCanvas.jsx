@@ -15,7 +15,6 @@ export class DrawingCanvas extends Component {
     setWrapperRef = (node) => {
         this.wrapperRef = node;
         this.position = this.wrapperRef.getBoundingClientRect();
-        console.log(this.position);
     };
     calculateX = (e) => {
       return e.nativeEvent.offsetX
