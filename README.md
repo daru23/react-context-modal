@@ -15,6 +15,11 @@ Design: Bootstrap 4
 ### Render Props
 Based in example: https://reactjs.org/docs/render-props.html
 
+# Whiteboard
+To be able to use streaming of the board clone and run the server:
+
+https://github.com/daru23/express-socket-io
+
 # Run
 ```
     npm install
