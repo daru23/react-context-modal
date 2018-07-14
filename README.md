@@ -5,8 +5,9 @@ ReactJS application for small examples of components and patterns
 Design: Bootstrap 4
 
 # TODOS
-* Connect whiteboard with sockeck.io
 * Add clean button for whiteboard
+* Move ports and server info to settings.json
+* ~~Connect whiteboard with sockeck.io~~
 * ~~Fix cursor tracker~~
 * ~~Fix cursor position in white board~~ 
 
