@@ -8,8 +8,8 @@
 }
 
 .whiteboard-container {
-    width: 800px;
-    height: 800px;
+    /*width: 800px;*/
+    /*height: 100%;*/
 }
 
 /**
@@ -17,8 +17,8 @@
  */
 
 .whiteboard {
-    height: 450px;
-    width: 450px;
+    /*height: 450px;*/
+    /*width: 450px;*/
     /*position: absolute;*/
     left: 0;
     right: 0;
