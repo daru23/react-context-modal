@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import openSocket from 'socket.io-client';
+const socket = openSocket('http://localhost:9090');
 
 // Components
 export class DrawingCanvas extends Component {
@@ -12,7 +14,9 @@ export class DrawingCanvas extends Component {
             y: 0
         }
     }
-
+    componentWillUnmount() {
+        socket.on('disconnect', function(){});
+    }
     setWrapperRef = (node) => {
         this.wrapperRef = node;
     };
@@ -73,19 +77,28 @@ export class DrawingCanvas extends Component {
         context.lineWidth = 2;
         context.stroke();
         context.closePath();
-        // if (!emit) {
-        //     return;
-        // }
-        // socket.emit('drawing', {
-        //     x0: x0 / w,
-        //     y0: y0 / h,
-        //     x1: x1 / w,
-        //     y1: y1 / h,
-        //     color: color
-        // });
+        if (!emit) {
+            return;
+        }
+        socket.emit('drawing', {
+            x0: x0 / w,
+            y0: y0 / h,
+            x1: x1 / w,
+            y1: y1 / h,
+            color: color
+        });
+    };
+    onDrawingEvent = (data) =>{
+        let canvas = this.wrapperRef;
+        let  w = canvas.width;
+        let h = canvas.height;
+        this.drawLine(data.x0 * w, data.y0 * h, data.x1 * w, data.y1 * h, data.color);
     };
 
     render() {
+
+        socket.on('drawing', this.onDrawingEvent);
+
         return (
             <div className="canvas-margin">
                 <canvas className="whiteboard" ref={this.setWrapperRef} onMouseMove={this.onMouseMove}
