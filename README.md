@@ -6,6 +6,7 @@ Design: Bootstrap 4
 
 # TODOS
 * Connect whiteboard with sockeck.io
+* Add clean button for whiteboard
 * ~~Fix cursor tracker~~
 * ~~Fix cursor position in white board~~ 
 
