@@ -9,12 +9,14 @@ export class Mouse extends Component {
         };
     }
     handleMouseMove = (e) => {
+        e.preventDefault();
         e.stopPropagation();
-        this.setState({x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY});
+        console.log(e.clientX, e.pageX, e.screenX);
+        this.setState({x: e.clientX - 70, y: e.clientY - 320});
     };
     render () {
         return (
-            <div ref="elem" onMouseMove={this.handleMouseMove} style={{height: '200px'}}>
+            <div ref="elem" onMouseMove={this.handleMouseMove} style={{position: 'relative', height: '200px', border: 'solid 1px black'}}>
                 {this.props.render(this.state)}
             </div>
         )
