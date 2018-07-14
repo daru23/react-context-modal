@@ -4,7 +4,9 @@ ReactJS application for small examples of components and patterns
 Design: Bootstrap 4
 
 # TODOS
-*  limit the number of events per second
+* Connect whiteboard with sockeck.io
+* ~~Fix cursor tracker~~
+* ~~Fix cursor position in white board~~ 
 
 # Patterns
 ### Render Props
