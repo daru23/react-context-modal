@@ -14,22 +14,21 @@ export class DrawingCanvas extends Component {
     }
     setWrapperRef = (node) => {
         this.wrapperRef = node;
-        this.position = this.wrapperRef.getBoundingClientRect();
     };
     calculateX = (e) => {
-      return e.nativeEvent.offsetX
+      return e.clientX
     };
     calculateY = (e) => {
-        return e.nativeEvent.offsetY
+        let position = this.wrapperRef.getBoundingClientRect();
+        return e.clientY - position.top
     };
     onMouseDown = (event) => {
-        // console.log(event.clientX, event.nativeEvent.offsetY, event.nativeEvent.screenY, this.position.y);
-        console.log(event.clientY, event.nativeEvent.offsetY, event.nativeEvent.screenY, this.position.y);
-        console.log( event.clientY - this.position.y);
+        let eventX = this.calculateX(event);
+        let eventY = this.calculateY(event);
         this.setState({
             drawing: true,
-            x: this.calculateX(event),
-            y: this.calculateY(event)
+            x: eventX,
+            y: eventY
         });
     };
     onMouseUp = (event) => {
@@ -38,10 +37,12 @@ export class DrawingCanvas extends Component {
         if (!drawing) {
             return;
         }
+        let eventX = this.calculateX(event);
+        let eventY = this.calculateY(event);
         this.setState({
             drawing: false
         });
-        this.drawLine(x, y, this.calculateX(event), this.calculateY(event), color, true);
+        this.drawLine(x, y, eventX, eventY, color, true);
     };
     onMouseMove = (event) => {
         const {drawing, x, y} = this.state;
@@ -49,10 +50,12 @@ export class DrawingCanvas extends Component {
         if (!drawing) {
             return;
         }
-        this.drawLine(x, y, this.calculateX(event), this.calculateY(event), color, true);
+        let eventX = this.calculateX(event);
+        let eventY = this.calculateY(event);
+        this.drawLine(x, y, eventX, eventY, color, true);
         this.setState({
-            x: this.calculateX(event),
-            y: this.calculateY(event)
+            x: eventX,
+            y: eventY
         });
     };
     drawLine = (x0, y0, x1, y1, color, emit) => {
@@ -61,15 +64,13 @@ export class DrawingCanvas extends Component {
         let context = canvas.getContext('2d');
         let w = canvas.width;
         let h = canvas.height;
-        console.log(`x0: ${x0} x1: ${x1}`);
-        console.log(`y0: ${y0} y1: ${y1}`);
-        // context.beginPath();
+        context.beginPath();
         context.moveTo(x0, y0);
         context.lineTo(x1, y1);
         context.strokeStyle = color;
         context.lineWidth = 2;
         context.stroke();
-        // context.closePath();
+        context.closePath();
         // if (!emit) {
         //     return;
         // }
