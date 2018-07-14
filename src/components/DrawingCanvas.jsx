@@ -9,14 +9,16 @@ export class DrawingCanvas extends Component {
         this.state = {
             drawing: false,
             x: 0,
-            y:0
+            y: 0
         }
     }
+
     setWrapperRef = (node) => {
         this.wrapperRef = node;
     };
     calculateX = (e) => {
-      return e.clientX
+        let position = this.wrapperRef.getBoundingClientRect();
+        return e.clientX - position.left;
     };
     calculateY = (e) => {
         let position = this.wrapperRef.getBoundingClientRect();
@@ -82,10 +84,13 @@ export class DrawingCanvas extends Component {
         //     color: color
         // });
     };
+
     render() {
         return (
-            <div>
-                <canvas className="whiteboard" ref={this.setWrapperRef} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp} onMouseDown={this.onMouseDown}> </canvas>
+            <div className="canvas-margin">
+                <canvas className="whiteboard" ref={this.setWrapperRef} onMouseMove={this.onMouseMove}
+                        width={500} height={500}
+                        onMouseUp={this.onMouseUp} onMouseDown={this.onMouseDown}> </canvas>
             </div>
         );
     }

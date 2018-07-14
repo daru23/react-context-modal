@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 
 export const ColorPicker = ({onChangeColor}) =>
-    (<div className="colors">
-        <div className="color black" onClick={() => {onChangeColor('black');}}></div>
-        <div className="color red" onClick={() => {onChangeColor('red');}}></div>
-        <div className="color green" onClick={() => {onChangeColor('green');}}></div>
-        <div className="color blue" onClick={() => {onChangeColor('blue');}}></div>
-        <div className="color yellow" onClick={() => {onChangeColor('yellow');}}></div>
-    </div>);
+    <div className="alert alert-light" role="alert">
+        <button type="button" className="btn btn-dark btn-margin" onClick={() => {onChangeColor('black');}}>Black</button>
+        <button type="button" className="btn btn-danger btn-margin" onClick={() => {onChangeColor('red');}}>Red </button>
+        <button type="button" className="btn btn-success btn-margin" onClick={() => {onChangeColor('green');}}>Green</button>
+        <button type="button" className="btn btn-primary btn-margin" onClick={() => {onChangeColor('blue');}}>Blue</button>
+        <button type="button" className="btn btn-warning btn-margin" onClick={() => {onChangeColor('yellow');}}>Yellow</button>
+    </div>;
 
 ColorPicker.propTypes = {
     onChangeColor: PropTypes.func.isRequired
