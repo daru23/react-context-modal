@@ -10,11 +10,11 @@ export class Mouse extends Component {
     }
     setWrapperRef = (node) => {
         this.wrapperRef = node;
-        this.position = this.wrapperRef.getBoundingClientRect();
     };
     handleMouseMove = (e) => {
         e.preventDefault();
-        this.setState({x: e.clientX - this.position.left, y: e.clientY - this.position.top});
+        let position = this.wrapperRef.getBoundingClientRect();
+        this.setState({x: e.clientX - position.left, y: e.clientY - position.top});
     };
     render () {
         return (
