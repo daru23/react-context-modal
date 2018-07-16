@@ -20,7 +20,7 @@ export class DrawingCanvas extends Component {
         }).catch((err) => {console.log(err)});
     }
     componentWillUnmount() {
-        socket.on('disconnect', function(){});
+        this.socket.on('disconnect', function(){});
     }
     setWrapperRef = (node) => {
         this.wrapperRef = node;
