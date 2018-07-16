@@ -71,3 +71,6 @@ converage/
 
 # build
 build/
+
+# ignoring settings.json
+# settings.json
