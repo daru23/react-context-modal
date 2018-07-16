@@ -22,6 +22,15 @@ To be able to use streaming of the board clone and run the server:
 
 https://github.com/daru23/express-socket-io
 
+# Settings
+
+`public/settings.json`
+```
+    {
+        "server" : "localhost:9090"
+    }
+``` 
+
 # Run
 ```
     npm install
