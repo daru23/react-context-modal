@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import openSocket from 'socket.io-client';
-const socket = openSocket('http://localhost:9090');
+// Get Settings
+import {getSettings} from '../../getSettings';
 
-// Components
 export class DrawingCanvas extends Component {
 
     constructor(props) {
@@ -13,6 +13,11 @@ export class DrawingCanvas extends Component {
             x: 0,
             y: 0
         }
+    }
+    componentDidMount() {
+        getSettings().then((settings) => {
+            this.socket = openSocket(settings.server);
+        }).catch((err) => {console.log(err)});
     }
     componentWillUnmount() {
         socket.on('disconnect', function(){});
@@ -80,7 +85,7 @@ export class DrawingCanvas extends Component {
         if (!emit) {
             return;
         }
-        socket.emit('drawing', {
+        this.socket.emit('drawing', {
             x0: x0 / w,
             y0: y0 / h,
             x1: x1 / w,
@@ -97,7 +102,9 @@ export class DrawingCanvas extends Component {
 
     render() {
 
-        socket.on('drawing', this.onDrawingEvent);
+        if (this.socket) {
+            this.socket.on('drawing', this.onDrawingEvent);
+        }
 
         return (
             <div className="canvas-margin">
