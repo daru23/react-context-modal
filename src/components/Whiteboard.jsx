@@ -22,6 +22,7 @@ export class Whiteboard extends Component {
     render() {
         return (
             <div className="whiteboard-container">
+                <p>Open another browser and share the board.</p>
                 <ColorPicker onChangeColor={this.onChangeColor}/>
                 <div>
                     <DrawingCanvas color={this.state.color}/>
