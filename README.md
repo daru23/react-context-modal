@@ -4,8 +4,10 @@ ReactJS application for small examples of components and patterns
 
 Design: Bootstrap 4
 
+Demo: http://ec2-18-222-30-111.us-east-2.compute.amazonaws.com/
+
 # TODOS
-* Add clean button for whiteboard
+* ~~Add clean button for whiteboard~~
 * Move ports and server info to settings.json
 * ~~Connect whiteboard with sockeck.io~~
 * ~~Fix cursor tracker~~
@@ -21,6 +23,15 @@ This example was base in `https://socket.io/demos/whiteboard/` adapted to ReactJ
 To be able to use streaming of the board clone and run the server:
 
 https://github.com/daru23/express-socket-io
+
+# Settings
+
+`public/settings.json`
+```
+    {
+        "server" : "localhost:9090"
+    }
+``` 
 
 # Run
 ```
