@@ -49,3 +49,14 @@
 .canvas-margin {
     margin-left: 20px;
 }
+
+.paragraph {
+    padding: 20px 0 0 20px;
+}
+
+.mouse-tracker {
+    position: relative;
+    height: 200px;
+    border: solid 1px grey;
+    border-radius: 4px;
+}

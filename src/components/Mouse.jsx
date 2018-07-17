@@ -18,7 +18,7 @@ export class Mouse extends Component {
     };
     render () {
         return (
-            <div  ref={this.setWrapperRef}  onMouseMove={this.handleMouseMove} style={{position: 'relative', height: '200px', border: 'solid 1px black'}}>
+            <div  ref={this.setWrapperRef}  onMouseMove={this.handleMouseMove} className="mouse-tracker">
                 {this.props.render(this.state)}
             </div>
         )
