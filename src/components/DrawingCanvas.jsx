@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import openSocket from 'socket.io-client';
-const socket = openSocket('http://localhost:9090');
+const socket = openSocket('18.222.140.255');
 
 // Components
 export class DrawingCanvas extends Component {
