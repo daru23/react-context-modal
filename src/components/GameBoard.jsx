@@ -11,13 +11,13 @@ export class GameBoard extends Component {
             <div className="card">
                 <div className="card-body">
                     <div>
-                        <PlayOption space={12} color={"#17a2b8"} />
-                        <p className="text-center">{player1}</p>
+                        <PlayOption space={12} color={"#17a2b8"} play={player1} />
+                        <p className="text-center">{"player1"}</p>
                     </div>
                     <p className="text-center">vs</p>
                     <div>
-                        <PlayOption space={12} color={"#17a2b8"}/>
-                        <p className="text-center">{player2}</p>
+                        <PlayOption space={12} color={"#17a2b8"} play={player2} />
+                        <p className="text-center">{"player2"}</p>
                     </div>
                 </div>
             </div>

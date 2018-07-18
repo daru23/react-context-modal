@@ -5,14 +5,14 @@ import HandPaper from './HandPaper';
 import HandRock from './HandRock';
 import HandScissors from './HandScissors';
 
-export const PlayOption = ({play, color, space}) =>{
+export const PlayOption = ({play, color, space}) => {
 
     let icon = null;
     if (play === 'paper') {
         icon = <HandPaper/>
     } else if (play === 'rock') {
         icon = <HandRock/>
-    } else {
+    } else if (play === 'scissors'){
         icon = <HandScissors/>
     }
 
