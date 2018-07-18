@@ -12,29 +12,35 @@ export class RockPaperScissors extends Component {
         this.state = {
             player1: null,
             player2: null,
-            winner:  null
-        }
+            winner: null,
+        };
     }
 
     startGame = () => {
-        this.setState({
-            player1: this.symbols[Math.floor(Math.random() * 3)],
-            player2: this.symbols[Math.floor(Math.random() * 3)],
-        }, () => {
-            this.setState({winner: this.whoIsTheWinner()})
-        })
+        let counter = 0;
+        let interval = setInterval(() => {
+            counter++;
+            this.setState({
+                player1: this.symbols[Math.floor(Math.random() * 3)],
+                player2: this.symbols[Math.floor(Math.random() * 3)],
+            });
+            if (counter === 20) {
+                clearInterval(interval);
+                this.setState({winner: this.whoIsTheWinner()});
+            }
+        }, 100);
     };
 
     whoIsTheWinner = () => {
         const {player1, player2} = this.state;
         if ((player1 === player2) && player1 && player2) {
-            return "It's a draw!"
+            return 'It\'s a draw!';
         }
-        if ((player1 === 'rock' && player2 === "scissors") || (player1 === 'scissors' && player2 === "paper") ||
-            (player1 === 'paper' && player2 === "rock")) {
-            return "Payer1 wins!"
+        if ((player1 === 'rock' && player2 === 'scissors') || (player1 === 'scissors' && player2 === 'paper') ||
+            (player1 === 'paper' && player2 === 'rock')) {
+            return 'Payer1 wins!';
         }
-        return "Player2 wins!"
+        return 'Player2 wins!';
     };
 
     render() {
@@ -51,7 +57,7 @@ export class RockPaperScissors extends Component {
                     <GameBoard player1={player1} player2={player2}/>
                     <p className="text-center">{winner}</p>
                 </div>
-                <div className="card-footer text-muted grey-layer" >
+                <div className="card-footer text-muted grey-layer">
                     <UserPlays/>
                 </div>
             </div>
