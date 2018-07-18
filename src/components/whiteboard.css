@@ -86,3 +86,12 @@
     right: 0;
     bottom: 0;
 }
+
+.grey-layer {
+    background-color: gray;
+    top: 50px;
+    left: 50px;
+    padding: 10px;
+    opacity: .2;
+    z-index: 9;
+}

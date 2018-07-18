@@ -18,7 +18,7 @@ export class RockPaperScissors extends Component {
                     <GameMode/>
                     <GameBoard player1={"player1"} player2={"player2"}/>
                 </div>
-                <div className="card-footer text-muted">
+                <div className="card-footer text-muted grey-layer" >
                     <UserPlays/>
                 </div>
             </div>
