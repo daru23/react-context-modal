@@ -7,8 +7,8 @@ Design: Bootstrap 4
 Demo: http://ec2-18-222-30-111.us-east-2.compute.amazonaws.com/
 
 # TODOS
-* ~~Add clean button for whiteboard~~
-* Move ports and server info to settings.json
+* Add clean button for whiteboard
+* ~~Move ports and server info to settings.json~~
 * ~~Connect whiteboard with sockeck.io~~
 * ~~Fix cursor tracker~~
 * ~~Fix cursor position in white board~~ 
