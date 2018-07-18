@@ -6,16 +6,29 @@ import UserPlays from './UserPlays';
 
 export class RockPaperScissors extends Component {
 
+    /*
+     * Game Modes
+     * 1 computer vs computer
+     * 2 computer vs user
+     * 3 user vs user
+     */
+
     constructor(props) {
         super(props);
         this.symbols = ['rock', 'paper', 'scissors'];
         this.state = {
-            player1: null,
-            player2: null,
+            gameMode: 1,
+            player1: {},
+            player2: {},
             winner: null,
         };
     }
-
+    selectGameMode = () => {
+        // Circular assign of state
+        this.setState({
+            gameMode: this.state.gameMode === 3? 1 : this.state.gameMode + 1
+        })
+    };
     startGame = () => {
         let counter = 0;
         let interval = setInterval(() => {
@@ -44,7 +57,7 @@ export class RockPaperScissors extends Component {
     };
 
     render() {
-        const {player1, player2, winner} = this.state;
+        const {gameMode, player1, player2, winner} = this.state;
         return (
             <div className="card mx-auto game-box-size">
                 <div className="card-header">
@@ -53,11 +66,11 @@ export class RockPaperScissors extends Component {
                     </div>
                 </div>
                 <div className="card-body">
-                    <GameMode startGame={this.startGame}/>
+                    <GameMode gameMode={gameMode} startGame={this.startGame} selectGameMode={this.selectGameMode}/>
                     <GameBoard player1={player1} player2={player2}/>
                     <p className="text-center">{winner}</p>
                 </div>
-                <div className="card-footer text-muted grey-layer">
+                <div className="card-footer text-muted">
                     <UserPlays/>
                 </div>
             </div>
