@@ -10,9 +10,9 @@ export class RockPaperScissors extends Component {
         super(props);
         this.symbols = ['rock', 'paper', 'scissors'];
         this.state = {
-            player1:null,
-            player2:null,
-            winner: null
+            player1: null,
+            player2: null,
+            winner:  null
         }
     }
 
@@ -20,13 +20,25 @@ export class RockPaperScissors extends Component {
         this.setState({
             player1: this.symbols[Math.floor(Math.random() * 3)],
             player2: this.symbols[Math.floor(Math.random() * 3)],
+        }, () => {
+            this.setState({winner: this.whoIsTheWinner()})
         })
     };
 
-    render() {
-
+    whoIsTheWinner = () => {
         const {player1, player2} = this.state;
+        if ((player1 === player2) && player1 && player2) {
+            return "It's a draw!"
+        }
+        if ((player1 === 'rock' && player2 === "scissors") || (player1 === 'scissors' && player2 === "paper") ||
+            (player1 === 'paper' && player2 === "rock")) {
+            return "Payer1 wins!"
+        }
+        return "Player2 wins!"
+    };
 
+    render() {
+        const {player1, player2, winner} = this.state;
         return (
             <div className="card mx-auto game-box-size">
                 <div className="card-header">
@@ -37,6 +49,7 @@ export class RockPaperScissors extends Component {
                 <div className="card-body">
                     <GameMode startGame={this.startGame}/>
                     <GameBoard player1={player1} player2={player2}/>
+                    <p className="text-center">{winner}</p>
                 </div>
                 <div className="card-footer text-muted grey-layer" >
                     <UserPlays/>
