@@ -6,8 +6,11 @@ Design: Bootstrap 4
 
 Demo: http://ec2-18-222-30-111.us-east-2.compute.amazonaws.com/
 
-# TODOS
+# To Do
 * Add clean button for whiteboard
+* Show how many users are connected in the whiteboard
+* As users for name when open the whiteboard
+* Disable socket when is not in whiteboard page
 * ~~Move ports and server info to settings.json~~
 * ~~Connect whiteboard with sockeck.io~~
 * ~~Fix cursor tracker~~
