@@ -15,19 +15,12 @@
  */
 
 .whiteboard {
-    /*height: 200;*/
-    /*width: 100%;*/
-    /*position: absolute;*/
     left: 0;
     right: 0;
     bottom: 0;
     top: 0;
     border: solid 1px black;
     border-radius: 4px;
-}
-
-.colors {
-    /*position: fixed;*/
 }
 
 .color {
@@ -59,4 +52,37 @@
     height: 200px;
     border: solid 1px grey;
     border-radius: 4px;
+}
+
+.center-title {
+    width: 200px;
+}
+
+.block-spacer {
+    padding: 20px;
+}
+
+.game-box-size {
+    width: 600px;
+    margin: 20px;
+}
+
+.circle {
+    width: 100px;
+    height: 100px;
+    /*background: #17a2b8;*/
+    -moz-border-radius: 70px;
+    -webkit-border-radius: 70px;
+    border-radius: 70px;
+}
+
+.circle > img {
+    -webkit-filter: invert(1);
+    filter: invert(1);
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
