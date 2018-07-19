@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 // Components
 import MouseTracker from './MouseTracker';
 
@@ -9,5 +10,9 @@ export const Card = ({title}) =>
         <MouseTracker />
         </div>
     </div>;
+
+Card.propTypes = {
+    title: PropTypes.string.isRequired
+};
 
 export default Card;

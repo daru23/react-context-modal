@@ -50,7 +50,7 @@
 .mouse-tracker {
     position: relative;
     height: 200px;
-    border: solid 1px grey;
+    border: solid 1px #dddddd;
     border-radius: 4px;
 }
 

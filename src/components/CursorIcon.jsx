@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const CursorIcon = ({mouse}) =>
     <div style={{position: 'absolute', left: mouse.x, top: mouse.y}}>
@@ -9,5 +10,9 @@ export const CursorIcon = ({mouse}) =>
             <path d="M2 16 C2 16 7 6 16 6 25 6 30 16 30 16 30 16 25 26 16 26 7 26 2 16 2 16 Z"/>
         </svg>
     </div>;
+
+CursorIcon.propTypes = {
+    mouse: PropTypes.object.isRequired
+};
 
 export default CursorIcon;

@@ -1,6 +1,6 @@
 import React from 'react';
 // Components
-import Mouse from './Mouse';
+import Mouse from '../containers/Mouse';
 import CursorIcon from './CursorIcon';
 
 export const MouseTracker = ({}) =>
