@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 // Components
-import GameMode from './GameMode';
-import GameBoard from './GameBoard';
-import UserPlays from './UserPlays';
+import GameMode from '../components/GameMode';
+import GameBoard from '../components/GameBoard';
+import UserPlays from '../components/UserPlays';
 
 export class RockPaperScissors extends Component {
 
@@ -12,38 +12,38 @@ export class RockPaperScissors extends Component {
      * 2 computer vs user
      * 3 user vs user
      */
-
     constructor(props) {
         super(props);
         this.symbols = ['rock', 'paper', 'scissors'];
         this.state = {
             gameMode: 1,
-            player1: {},
-            player2: {},
+            player1: '',
+            player2: '',
             winner: null,
         };
     }
+
     selectGameMode = () => {
         // Circular assign of state
         this.setState({
-            gameMode: this.state.gameMode === 3? 1 : this.state.gameMode + 1
-        })
+            gameMode: this.state.gameMode === 2 ? 1 : this.state.gameMode + 1,
+            winner: null,
+        });
     };
-    startGame = () => {
+    startGame = (play = '') => {
         let counter = 0;
         let interval = setInterval(() => {
             counter++;
             this.setState({
                 player1: this.symbols[Math.floor(Math.random() * 3)],
-                player2: this.symbols[Math.floor(Math.random() * 3)],
+                player2: play !== '' ? play : this.symbols[Math.floor(Math.random() * 3)],
             });
             if (counter === 20) {
                 clearInterval(interval);
                 this.setState({winner: this.whoIsTheWinner()});
             }
-        }, 100);
+        }, 70);
     };
-
     whoIsTheWinner = () => {
         const {player1, player2} = this.state;
         if ((player1 === player2) && player1 && player2) {
@@ -68,10 +68,10 @@ export class RockPaperScissors extends Component {
                 <div className="card-body">
                     <GameMode gameMode={gameMode} startGame={this.startGame} selectGameMode={this.selectGameMode}/>
                     <GameBoard player1={player1} player2={player2}/>
-                    <p className="text-center">{winner}</p>
+                    <strong><p className="text-center">{winner}</p></strong>
                 </div>
-                <div className="card-footer text-muted">
-                    <UserPlays/>
+                <div className={`card-footer text-muted ${gameMode === 1 ? 'grey-layer' : ''}`}>
+                    <UserPlays gameMode={gameMode} startGame={this.startGame}/>
                 </div>
             </div>
         );

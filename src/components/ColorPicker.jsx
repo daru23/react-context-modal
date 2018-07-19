@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 export const ColorPicker = ({onChangeColor}) =>
     <div className="alert alert-light" role="alert">
         <button type="button" className="btn btn-dark btn-margin" onClick={() => {onChangeColor('black');}}>Black</button>

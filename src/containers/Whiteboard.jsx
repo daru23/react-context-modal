@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 // Components
-import ColorPicker from './ColorPicker';
+import ColorPicker from '../components/ColorPicker';
 import DrawingCanvas from './DrawingCanvas';
 // CSS
-import './whiteboard.css';
+import '../styles/whiteboard.css';
 
 export class Whiteboard extends Component {
 

@@ -59,12 +59,16 @@
 }
 
 .block-spacer {
-    padding: 20px;
+    padding: 0 20px 20px 20px;
 }
 
 .game-box-size {
     width: 600px;
     margin: 20px;
+}
+
+.pointer {
+    cursor: pointer;
 }
 
 .circle {
@@ -74,7 +78,6 @@
     -moz-border-radius: 70px;
     -webkit-border-radius: 70px;
     border-radius: 70px;
-    cursor: pointer;
 }
 
 .circle > img {

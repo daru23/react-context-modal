@@ -1,9 +1,9 @@
 import React from 'react';
-import { Route, Link } from "react-router-dom";
+import {Route} from "react-router-dom";
 import Header from './Header';
 import Body from './Body';
-import Whiteboard from './Whiteboard';
-import RockPaperScissors from './RockPaperScissors';
+import Whiteboard from '../containers/Whiteboard';
+import RockPaperScissors from '../containers/RockPaperScissors';
 
 export const App = () =>
     <div id="app-component">
