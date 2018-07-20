@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import openSocket from 'socket.io-client';
-// Get Settings
-import {getSettings} from '../../getSettings';
 
 export class DrawingCanvas extends Component {
 
@@ -11,17 +8,20 @@ export class DrawingCanvas extends Component {
         this.state = {
             drawing: false,
             x: 0,
-            y: 0
+            y: 0,
+            socket: null
         }
     }
     componentDidMount() {
-        getSettings().then((settings) => {
-            this.socket = openSocket(settings.server);
-        }).catch((err) => {console.log(err)});
+      this.setState({socket: this.props.socket})
+    };
+    static getDerivedStateFromProps(props, state) {
+        if (state.socket !== props.socket) {
+            return {socket: props.socket}
+        }
+       return null
     }
-    componentWillUnmount() {
-        this.socket.on('disconnect', function(){});
-    }
+
     setWrapperRef = (node) => {
         this.wrapperRef = node;
     };
@@ -71,6 +71,8 @@ export class DrawingCanvas extends Component {
     };
     drawLine = (x0, y0, x1, y1, color, emit) => {
 
+        const {socket} = this.state;
+
         let canvas = this.wrapperRef;
         let context = canvas.getContext('2d');
         let w = canvas.width;
@@ -85,7 +87,7 @@ export class DrawingCanvas extends Component {
         if (!emit) {
             return;
         }
-        this.socket.emit('drawing', {
+        socket.emit('drawing', {
             x0: x0 / w,
             y0: y0 / h,
             x1: x1 / w,
@@ -99,11 +101,12 @@ export class DrawingCanvas extends Component {
         let h = canvas.height;
         this.drawLine(data.x0 * w, data.y0 * h, data.x1 * w, data.y1 * h, data.color);
     };
-
     render() {
 
-        if (this.socket) {
-            this.socket.on('drawing', this.onDrawingEvent);
+        const {socket} = this.state;
+
+        if (socket) {
+            socket.on('drawing', this.onDrawingEvent);
         }
 
         return (
