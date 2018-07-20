@@ -49,6 +49,7 @@ module.exports = {
             filename: './index.html',
         }),
         new CopyWebpackPlugin([
+            {from: 'public/favicon.ico'},
             {from: 'src/img', to: 'assets'},
         ]),
         new MiniCssExtractPlugin({
