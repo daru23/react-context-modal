@@ -9,17 +9,19 @@ export class DrawingCanvas extends Component {
             drawing: false,
             x: 0,
             y: 0,
-            socket: null
-        }
+            socket: null,
+        };
     }
+
     componentDidMount() {
-      this.setState({socket: this.props.socket})
+        this.setState({socket: this.props.socket});
     };
+
     static getDerivedStateFromProps(props, state) {
         if (state.socket !== props.socket) {
-            return {socket: props.socket}
+            return {socket: props.socket};
         }
-       return null
+        return null;
     }
 
     setWrapperRef = (node) => {
@@ -31,7 +33,7 @@ export class DrawingCanvas extends Component {
     };
     calculateY = (e) => {
         let position = this.wrapperRef.getBoundingClientRect();
-        return e.clientY - position.top
+        return e.clientY - position.top;
     };
     onMouseDown = (event) => {
         let eventX = this.calculateX(event);
@@ -39,7 +41,7 @@ export class DrawingCanvas extends Component {
         this.setState({
             drawing: true,
             x: eventX,
-            y: eventY
+            y: eventY,
         });
     };
     onMouseUp = (event) => {
@@ -51,7 +53,7 @@ export class DrawingCanvas extends Component {
         let eventX = this.calculateX(event);
         let eventY = this.calculateY(event);
         this.setState({
-            drawing: false
+            drawing: false,
         });
         this.drawLine(x, y, eventX, eventY, color, true);
     };
@@ -66,12 +68,12 @@ export class DrawingCanvas extends Component {
         this.drawLine(x, y, eventX, eventY, color, true);
         this.setState({
             x: eventX,
-            y: eventY
+            y: eventY,
         });
     };
     drawLine = (x0, y0, x1, y1, color, emit) => {
 
-        const {socket} = this.state;
+        const {socket} = this.props;
 
         let canvas = this.wrapperRef;
         let context = canvas.getContext('2d');
@@ -92,28 +94,40 @@ export class DrawingCanvas extends Component {
             y0: y0 / h,
             x1: x1 / w,
             y1: y1 / h,
-            color: color
+            color: color,
         });
     };
-    onDrawingEvent = (data) =>{
+    onDrawingEvent = (data) => {
         let canvas = this.wrapperRef;
-        let  w = canvas.width;
+        let w = canvas.width;
         let h = canvas.height;
         this.drawLine(data.x0 * w, data.y0 * h, data.x1 * w, data.y1 * h, data.color);
     };
+    onClearCanvas = () => {
+        let canvas = this.wrapperRef;
+        const context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+    };
+
     render() {
 
-        const {socket} = this.state;
+        const {socket} = this.props;
 
         if (socket) {
             socket.on('drawing', this.onDrawingEvent);
         }
 
         return (
-            <div className="canvas-margin">
-                <canvas className="whiteboard" ref={this.setWrapperRef} onMouseMove={this.onMouseMove}
-                        width={500} height={500}
-                        onMouseUp={this.onMouseUp} onMouseDown={this.onMouseDown}> </canvas>
+            <div className="">
+                <div className="canvas-margin">
+                    <canvas className="whiteboard" ref={this.setWrapperRef} onMouseMove={this.onMouseMove}
+                            width={500} height={500}
+                            onMouseUp={this.onMouseUp} onMouseDown={this.onMouseDown}> </canvas>
+                </div>
+                <div className="canvas-margin">
+                    <button type="button" className="btn btn-outline-secondary" onClick={this.onClearCanvas}>clear</button>
+                </div>
             </div>
         );
     }
