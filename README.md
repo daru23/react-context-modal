@@ -7,11 +7,11 @@ Design: Bootstrap 4
 Demo: http://ec2-18-222-30-111.us-east-2.compute.amazonaws.com/
 
 # To Do
-* Show how many users are connected in the whiteboard
 * As users for name when open the whiteboard
 * Disable socket when is not in whiteboard page
-* Integrate React Theme Context.
 * Add User vs User mode in Rock, Paper, Scissors
+* ~~Show how many users are connected in the whiteboard~~
+* ~~Integrate React Theme Context.~~
 * ~~Add clean button for whiteboard~~
 * ~~Add Computer vs User mode in Rock, Paper, Scissors~~
 * ~~Move ports and server info to settings.json~~
