@@ -47,10 +47,11 @@ export class ToggleMenu extends Component {
     };
     render() {
         const {showMenu} = this.state;
+        const {theme} = this.props;
         let optionsList = this.handleChildren();
 
         return (<div ref={this.setWrapperRef}  className={`dropdown ${showMenu ? 'show' : ''}`}>
-                    <button className="btn btn-dark" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={this.toggleMenu}>
+                    <button className={`btn btn-${theme === 'dark' ? 'dark': 'light' }`} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={this.toggleMenu}>
                        <Icon />
                     </button>
                     <div className={`dropdown-menu dropdown-menu-right ${showMenu ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
