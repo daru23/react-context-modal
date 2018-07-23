@@ -2,7 +2,7 @@ import React from 'react';
 // Components
 
 export const Body = () =>
-    <div className="jumbotron" style={{height: "100vh"}}>
+    <div className="jumbotron" style={{height: "120vh"}}>
         <p className="display-4">This is a simple React Application.</p>
         <p className="lead">Here I will implement some example and React Paradigms.</p>
         <div className="container">
