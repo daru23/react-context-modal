@@ -12,6 +12,13 @@ export const Body = () =>
         </div>
         <hr className="my-4"/>
         <p>I will test some patters and paradigms in this project.</p>
+        <ol>
+            <li>Toggle Menu: Event Listeners.</li>
+            <li>Theme Toggle: ReactJS Context API.</li>
+            <li>Mouse Tracker: Render Props.</li>
+            <li>Whiteboard: Canvas and Web Sockets.</li>
+            <li>Rock, Paper, Scissors: Stateless Components, Containers, Conditional Renders.</li>
+        </ol>
         <p className="lead">
             <a className="btn btn-info btn-lg" href="#" role="button">Learn more</a>
         </p>
